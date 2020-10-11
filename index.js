@@ -30,6 +30,16 @@ app.post("/addAppointment" , (req, res) => {
     })
     .catch(error => { throw error})
 })
+
+app.post("/appointmentsByDate" , (req, res) => {
+    const date = req.body;
+    console.log(date.date);
+    appointmentCollection.find({date: date.date})
+    .toArray((err,documents)=>{
+        res.send(documents)
+    })
+    
+})
 });
   app.get("/", (req, res) => {
     res.send("Hello Tazwar , your server working!");
